@@ -61,7 +61,7 @@ def kelola_barang():
 
 def cari_barang():
     while True:
-        data = input_string('Masukkan merek atau kategori barang: ')
+        keyword = input_string('Masukkan merek atau kategori barang: ')
         print('Barang ditemukan!')
         edit_barang()
 
