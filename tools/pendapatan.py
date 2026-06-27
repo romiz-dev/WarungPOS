@@ -4,8 +4,9 @@ from tools.libs import welcome_messege, input_integer
 
 def main_menu():
     main_menu = ['Cek Pendapatan', 'Kembali']
-    welcome_messege('PENDAPATAN')
+    
     while True:
+        welcome_messege('PENDAPATAN')
         try:
             for i, menu in enumerate(main_menu, 1):
                 print(f'{i}. {menu}')
