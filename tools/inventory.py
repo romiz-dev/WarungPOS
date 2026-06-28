@@ -31,11 +31,14 @@ def input_barang():
     # database tidak menerimanya
     welcome_messege('INPUT BARANG')
     while True:
+        print('Tekan n untuk batal')
         nama_barang = input_string('Nama Barang: ').title()
+        if nama_barang == 'N':
+            return
         kode_barang = input_kode('Kode Barang\n(Formatnya 3 huruf dari jenis barang-3 huruf dari merek barang-atribut tambahan. Contoh format: MGO-BIM-2L): ').upper()
         harga_barang = input_integer('Harga Barang: ')
         stok_barang = input_integer('Stok Barang: ')
-
+        
         # error handling untuk duplikasi barang
         try:
             db.simpan_barang(kode_barang, nama_barang, harga_barang, stok_barang)
@@ -55,7 +58,7 @@ def input_barang():
             break
 
 def kelola_barang():
-    main_menu = ['Cari Barang', 'Kembali']
+    main_menu = ['Cari Barang', 'Tampilkan Semua Barang', 'Kembali']
     while True:
         welcome_messege('PENGELOLAAN BARANG')
         for i, menu in enumerate(main_menu, 1):
@@ -65,10 +68,26 @@ def kelola_barang():
         if choose == 1:
             cari_barang()
         elif choose == 2:
+            tampilkan_barang()
+        elif choose == 3:
             main.main_menu()
         else:
             print('Pilihan tidak tersedia!')
             continue
+
+def tampilkan_barang():
+    while True:
+        hasil = db.tampilkan_semua_barang()
+        welcome_messege('DATA BARANG')
+        for i, tbl_barang in enumerate(hasil, 1):
+            print(f'{i}. [{tbl_barang['kode']}] {tbl_barang['nama']} - Rp{tbl_barang['harga']} ({tbl_barang['stok']})')
+
+        pilih = input_integer('\nPilih nomor barang yang ingin diedit (0 untuk kembali): ')
+        if pilih == 0 or pilih > len(hasil):
+            return
+
+        barang_terpilih = hasil[pilih - 1]
+        edit_barang(barang_terpilih)
 
 def cari_barang():
     while True:
@@ -106,7 +125,7 @@ def edit_barang(barang):
             print('Mengganti nama...')
             db.update_data_barang(barang['kode'], 'nama', nama_baru)
             barang['nama'] = nama_baru
-            sleep(3)
+            sleep(2)
             print('\nNama berhasil diubah!')
         elif choose == 2:
             kode_baru = input_kode('Masukkan kode baru: ').upper()
@@ -114,7 +133,7 @@ def edit_barang(barang):
                 print('Mengganti kode...')
                 db.update_data_barang(barang['kode'], 'kode', kode_baru)
                 barang['kode'] = kode_baru
-                sleep(3)
+                sleep(2)
                 print('\nKode berhasil diubah!')
             except mysql.connector.Error:
                 print('GAGAL! Kode barang sudah dipakai!')
@@ -123,14 +142,14 @@ def edit_barang(barang):
             print('Mengganti harga...')
             db.update_data_barang(barang['kode'], 'harga', harga_baru)
             barang['harga'] = harga_baru
-            sleep(3)
+            sleep(2)
             print('Harga berhasil diubah!')
         elif choose == 4:
             stok_baru = input_integer('Masukkan stok baru: ')
             print('Mengganti stok...')
-            db.update_data_barang(barang['kode'], 'stok', harga_baru)
+            db.update_data_barang(barang['kode'], 'stok', stok_baru)
             barang['stok'] = stok_baru
-            sleep(3)
+            sleep(2)
             print('Stok berhasil diubah!')
         elif choose == 5:
             choose = input_yesno('Apakah anda yakin ingin menghapus barang ini? [y/n]: ')
@@ -138,7 +157,7 @@ def edit_barang(barang):
             if choose == 'y':
                 print('Menghapus barang...')
                 db.hapus_barang(barang['kode'])
-                sleep(3)
+                sleep(2)
                 print('Barang berhasil dihapus!!!\n')
                 break
         elif choose == 6:

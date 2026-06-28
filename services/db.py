@@ -36,13 +36,22 @@ def cari_barang(keyword):
     db.close()
     return hasil
 
+def tampilkan_semua_barang():
+    db = get_connection()
+    cursor = db.cursor(dictionary = True)
+    query = "SELECT * FROM tbl_barang"
+    cursor.execute(query)
+    hasil = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return hasil
+
 # fungsi update data barang
 def update_data_barang(kode, kolom, nilai_baru):
     db = get_connection()
     cursor = db.cursor()
     query = f"UPDATE tbl_barang SET {kolom} = %s WHERE kode = %s"
-    values = (nilai_baru, kode)
-    cursor.execute(query, values)
+    cursor.execute(query, (nilai_baru, kode))
     db.commit()
     cursor.close()
     db.close()
@@ -66,6 +75,16 @@ def simpan_pendapatan(total):
     db.commit()
     cursor.close()
     db.close()
+
+def tampilkan_pendapatan():
+    db = get_connection()
+    cursor = db.cursor(dictionary = True)
+    query = "SELECT * FROM tbl_pendapatan"
+    cursor.execute(query)
+    hasil = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return hasil
 
 def simpan_utang(nama, total):
     db = get_connection()
