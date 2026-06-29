@@ -1,13 +1,13 @@
 # initializing
 import main
-from tools.libs import welcome_messege, input_string, input_integer, input_kode, input_yesno
+from tools.libs import welcome_message, input_string, input_integer, input_kode, input_yesno
 from time import sleep
 from services import db
 import mysql.connector
 
 def main_menu():
     while True:
-        welcome_messege('INVENTORY')
+        welcome_message('INVENTORY')
         main_menu = ['Input Barang', 'Kelola Barang', 'Kembali']
 
         for i, menu in enumerate(main_menu, 1):
@@ -29,7 +29,7 @@ def input_barang():
     # gimana caranya agar database menjadi sensitif
     # sehingga jika ada barang dengan nama barang dan kode barang yang sama 
     # database tidak menerimanya
-    welcome_messege('INPUT BARANG')
+    welcome_message('INPUT BARANG')
     while True:
         print('Tekan n untuk batal')
         nama_barang = input_string('Nama Barang: ').title()
@@ -60,7 +60,7 @@ def input_barang():
 def kelola_barang():
     main_menu = ['Cari Barang', 'Tampilkan Semua Barang', 'Kembali']
     while True:
-        welcome_messege('PENGELOLAAN BARANG')
+        welcome_message('PENGELOLAAN BARANG')
         for i, menu in enumerate(main_menu, 1):
             print(f'{i}. {menu}')
         choose = input_integer('\nPilihanmu: ')
@@ -78,7 +78,7 @@ def kelola_barang():
 def tampilkan_barang():
     while True:
         hasil = db.tampilkan_semua_barang()
-        welcome_messege('DATA BARANG')
+        welcome_message('DATA BARANG')
         for i, tbl_barang in enumerate(hasil, 1):
             print(f'{i}. [{tbl_barang['kode']}] {tbl_barang['nama']} - Rp{tbl_barang['harga']} ({tbl_barang['stok']})')
 

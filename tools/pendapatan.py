@@ -1,12 +1,13 @@
 import main
-from tools.libs import welcome_messege, input_integer
-
+from tools.libs import welcome_message, input_integer
+from services import db
+import mysql.connector
 
 def main_menu():
     main_menu = ['Cek Pendapatan', 'Kembali']
     
     while True:
-        welcome_messege('PENDAPATAN')
+        welcome_message('PENDAPATAN')
         try:
             for i, menu in enumerate(main_menu, 1):
                 print(f'{i}. {menu}')
@@ -25,20 +26,20 @@ def main_menu():
 
 def pendapatan():
     # menampilkan pendapatan harian dan pendapatan bulanan dari database pendapatan
-    welcome_messege('DATA PENDAPATAN')
-    print('COMING SOON!')
     while True:
-        try:
-            print('\n1. Kembali')
-            choose = input_integer('\nPilihanmu: ')
+        hasil = db.tampilkan_pendapatan()
+        welcome_message('DATA PENDAPATAN')
 
-            if choose == 1:
-                break
-            else:
-                print('Pilihan tidak tersedia!')
-                continue
-        except ValueError:
+        for i, tbl_pendapatan in enumerate(hasil, 1):
+            print(f'{i}. Total Belanja: Rp{tbl_pendapatan['total_belanja']} | {tbl_pendapatan['tanggal']}')
+        print('\n1. Kembali')
+        choose = input_integer('\nPilihanmu: ')
+
+        if choose == 1:
+            break
+        else:
             print('Pilihan tidak tersedia!')
+            continue
 
 
 def start():

@@ -18,7 +18,9 @@ Aplikasi Point of Sales (POS) / Kasir berbasis teks (CLI) yang dirancang untuk m
 
 Jika Anda ingin mencoba menjalankan proyek ini di komputer Anda, ikuti langkah-langkah berikut:
 
-### 1. Kloning Repositori
-```bash
-git clone [https://github.com/romiz-dev/WarungPOS.git](https://github.com/romiz-dev/WarungPOS.git)
-cd WarungPOS
+## Cara Menjalankan Proyek Ini:
+1. Clone repositori ini ke laptop Anda.
+2. Install dependensi dengan perintah: `pip install -r requirements.txt`.
+3. Import file `database.sql` ke server MySQL lokal Anda.
+4. Salin file `.env.example` menjadi `.env`, lalu sesuaikan `DB_USER` dan `DB_PASSWORD` dengan MySQL Anda.
+5. Jalankan program dengan perintah: `python main.py`.

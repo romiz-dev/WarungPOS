@@ -13,6 +13,7 @@ def get_connection():
         database=os.getenv("DB_NAME", "warung_apps")
     )
 
+# ==================== LOGIKA INVENTORY ====================
 # fungsi simpan barang
 def simpan_barang(kode, nama, harga, stok):
     db = get_connection()
@@ -66,6 +67,7 @@ def hapus_barang(kode):
     cursor.close()
     db.close()
 
+# ==================== LOGIKA PENDAPATAN ====================
 # fungsi simpan pendapatan
 def simpan_pendapatan(total):
     db = get_connection()
@@ -86,6 +88,7 @@ def tampilkan_pendapatan():
     db.close()
     return hasil
 
+# ==================== LOGIKA UTANG PIUTANG ====================
 def simpan_utang(nama, total):
     db = get_connection()
     cursor = db.cursor()

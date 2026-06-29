@@ -1,11 +1,11 @@
 import main
-from tools.libs import welcome_messege, input_integer, input_string
+from tools.libs import welcome_message, input_integer, input_string
 
 
 def main_menu():
     
     main_menu = ['Tampilkan Utang', 'Kelola Utang', 'Kembali']
-    welcome_messege('UTANG PIUTANG')
+    welcome_message('UTANG PIUTANG')
     while True:
         try:
             for i, menu in enumerate(main_menu, 1):
@@ -29,7 +29,7 @@ def tampilkan_utang():
     # menampilkan data pengutang dari database utang
     # data pengutang berasal dari fitur pembayaran.
     # jika sang pembeli berutang, data rincian belanja akan dimasukkan ke database utang
-    welcome_messege('DAFTAR UTANG')
+    welcome_message('DAFTAR UTANG')
     print('COMING SOON!\n')
     while True:
         try:
@@ -50,7 +50,7 @@ def kelola_utang():
     # dengan cara mencari pengutang berdasarkan nama atau tanggal berutang
     # jika lunas akan diprint struk utang lunas yang berisi rincian belanja
     menu = ['Kelola Utang', 'Kembali']
-    welcome_messege('KELOLA UTANG')
+    welcome_message('KELOLA UTANG')
     while True:
         
         pengutang = input('Cari pengutang (nama/tanggal berutang): ')

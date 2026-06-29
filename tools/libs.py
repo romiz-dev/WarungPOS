@@ -1,7 +1,7 @@
 from time import sleep
 import re
 
-def welcome_messege(nama):
+def welcome_message(nama):
     style = '=' * (len(nama) + 6)
     print(style)
     print(f'== {nama} ==')

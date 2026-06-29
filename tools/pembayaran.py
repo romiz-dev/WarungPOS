@@ -1,11 +1,11 @@
 import main
-from tools.libs import welcome_messege, insert_card, print_struk, input_integer, input_string, input_yesno
+from tools.libs import welcome_message, insert_card, print_struk, input_integer, input_string, input_yesno
 from services import db
 import mysql.connector
 
 def main_menu():
     main_menu = ['Cash', 'Cashless', 'Kembali']
-    welcome_messege('METODE PEMBAYARAN')
+    welcome_message('METODE PEMBAYARAN')
     while True:
         try:
             for i, menu in enumerate(main_menu, 1):
@@ -27,7 +27,7 @@ def main_menu():
 
 def cash():
     menu = ['Utang', 'Bayar', 'Kembali']
-    welcome_messege('CASH')
+    welcome_message('CASH')
     while True:
         total = input_integer('Masukkan total belanja: ')
         try:
@@ -66,7 +66,7 @@ def cash():
 
 def cashless():
     while True:
-        welcome_messege('CASHLESS')
+        welcome_message('CASHLESS')
         total = input_integer('Masukkan total belanja: ')
         print('Tempelkan kartu')
         insert_card()

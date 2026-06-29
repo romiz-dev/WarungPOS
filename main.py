@@ -4,7 +4,7 @@ from tools import inventory, libs, pendapatan, utang_piutang, pembayaran
 #main menu function
 def main_menu():
     while True:
-        libs.welcome_messege('BAROKAH MART')
+        libs.welcome_message('BAROKAH MART')
         main_menu = ['Inventory', 'Pendapatan', 'Utang Piutang', 'Pembayaran', 'Logout']
 
         for i, item in enumerate(main_menu, 1):
