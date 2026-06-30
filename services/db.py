@@ -98,11 +98,22 @@ def simpan_utang(nama, total):
     cursor.close()
     db.close()
 
+def tampilkan_utang():
+    db = get_connection()
+    cursor = db.cursor(dictionary = True)
+    query = "SELECT * FROM tbl_utang"
+    cursor.execute(query)
+    hasil = cursor.fetchall()
+    cursor.close()
+    db.close()
+    return hasil
+
 def cari_utang(keyword):
     db = get_connection()
-    cursor = db.cursor()
-    query = "SELECT * FROM tbl_utang WHERE nama_pengutang LIKE %s AND status = 'Belum Lunas'"
-    cursor.execute(query, [f"%{keyword}%"])
+    cursor = db.cursor(dictionary = True)
+    query = "SELECT * FROM tbl_utang WHERE nama_pengutang LIKE %s or tanggal LIKE %s"
+    values = (f"%{keyword}%", f"%{keyword}%")
+    cursor.execute(query, values)
     hasil = cursor.fetchall()
     cursor.close()
     db.close()
@@ -112,7 +123,7 @@ def ganti_status_utang(id_utang, status_baru):
     db = get_connection()
     cursor = db.cursor()
     query = "UPDATE tbl_utang SET status = %s WHERE id_utang = %s"
-    cursor.execute(query, (id_utang, status_baru))
+    cursor.execute(query, (status_baru, id_utang))
     db.commit()
     cursor.close()
     db.close()

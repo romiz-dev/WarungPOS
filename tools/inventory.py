@@ -113,7 +113,7 @@ def edit_barang(barang):
     while True:
         main_menu = ['Nama Barang', 'Kode Barang', 'Harga Barang', 'Stok Barang', 'Hapus Barang', 'Kembali']
 
-        print(f'\nBarang terpilih: [{barang['kode']}] {barang['nama']} - Rp{barang['harga']} (Stok: {barang['stok']})')
+        print(f'\nBarang terpilih: [{barang['kode']}] {barang['nama']} - Rp{barang['harga']:,} (Stok: {barang['stok']})')
         print('\nApa yang ingin anda ubah?\n')
 
         for i, menu in enumerate(main_menu, 1):

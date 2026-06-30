@@ -31,7 +31,7 @@ def pendapatan():
         welcome_message('DATA PENDAPATAN')
 
         for i, tbl_pendapatan in enumerate(hasil, 1):
-            print(f'{i}. Total Belanja: Rp{tbl_pendapatan['total_belanja']} | {tbl_pendapatan['tanggal']}')
+            print(f'{i}. Total Belanja: Rp{tbl_pendapatan['total_belanja']:,} | {tbl_pendapatan['tanggal']}')
         print('\n1. Kembali')
         choose = input_integer('\nPilihanmu: ')
 

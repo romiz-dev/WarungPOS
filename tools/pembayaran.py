@@ -5,8 +5,9 @@ import mysql.connector
 
 def main_menu():
     main_menu = ['Cash', 'Cashless', 'Kembali']
-    welcome_message('METODE PEMBAYARAN')
+    
     while True:
+        welcome_message('METODE PEMBAYARAN')
         try:
             for i, menu in enumerate(main_menu, 1):
                 print(f'{i}. {menu}')
@@ -27,9 +28,12 @@ def main_menu():
 
 def cash():
     menu = ['Utang', 'Bayar', 'Kembali']
-    welcome_message('CASH')
+    
     while True:
-        total = input_integer('Masukkan total belanja: ')
+        welcome_message('CASH')
+        total = input_integer('Masukkan total belanja (0 untuk kembali): ')
+        if total == 0:
+            return
         try:
             for i, selection in enumerate(menu, 1):
                 print(f'{i}. {selection}')
@@ -67,7 +71,10 @@ def cash():
 def cashless():
     while True:
         welcome_message('CASHLESS')
-        total = input_integer('Masukkan total belanja: ')
+        total = input_integer('Masukkan total belanja (0 untuk kembali): ')
+        if total == 0:
+            return
+        
         print('Tempelkan kartu')
         insert_card()
         pin = input_integer('PIN: ')
