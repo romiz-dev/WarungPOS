@@ -16,7 +16,7 @@ def main_menu():
             if choose == 1:
                 pendapatan()
             elif choose == 2:
-                main.main_menu()
+                return
             else:
                 print('Pilihan tidak tersedia!')
                 continue

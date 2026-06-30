@@ -18,7 +18,7 @@ def main_menu():
             elif choose == 2:
                 cashless()
             elif choose == 3:
-                main.main_menu()
+                return
             else:
                 print('Pilihan tidak tersedia!')
                 continue

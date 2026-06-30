@@ -20,7 +20,7 @@ def main_menu():
         elif choose == 2:
             kelola_barang()
         elif choose == 3:
-            main.main_menu()
+            return
         else:
             print('Pilihan tidak tersedia')
             continue
@@ -70,7 +70,7 @@ def kelola_barang():
         elif choose == 2:
             tampilkan_barang()
         elif choose == 3:
-            main.main_menu()
+            return
         else:
             print('Pilihan tidak tersedia!')
             continue
@@ -127,6 +127,7 @@ def edit_barang(barang):
             barang['nama'] = nama_baru
             sleep(2)
             print('\nNama berhasil diubah!')
+
         elif choose == 2:
             kode_baru = input_kode('Masukkan kode baru: ').upper()
             try:
@@ -137,6 +138,7 @@ def edit_barang(barang):
                 print('\nKode berhasil diubah!')
             except mysql.connector.Error:
                 print('GAGAL! Kode barang sudah dipakai!')
+
         elif choose == 3:
             harga_baru = input_integer('Masukkan harga baru: ')
             print('Mengganti harga...')
@@ -144,6 +146,7 @@ def edit_barang(barang):
             barang['harga'] = harga_baru
             sleep(2)
             print('Harga berhasil diubah!')
+
         elif choose == 4:
             stok_baru = input_integer('Masukkan stok baru: ')
             print('Mengganti stok...')
@@ -151,6 +154,7 @@ def edit_barang(barang):
             barang['stok'] = stok_baru
             sleep(2)
             print('Stok berhasil diubah!')
+
         elif choose == 5:
             choose = input_yesno('Apakah anda yakin ingin menghapus barang ini? [y/n]: ')
 
@@ -160,8 +164,12 @@ def edit_barang(barang):
                 sleep(2)
                 print('Barang berhasil dihapus!!!\n')
                 break
+            elif choose == 'n':
+                print('Proses dibatalkan...')
+                sleep(2)
+                return
         elif choose == 6:
-            kelola_barang()
+            return
         else:
             print('Pilihan tidak tersedia!!!')
             continue

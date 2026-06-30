@@ -18,7 +18,7 @@ def main_menu():
         elif choose == 2:
             kelola_utang()
         elif choose == 3:
-            main.main_menu()
+            return
         else:
             print('Pilihan tidak tersedia!')
             continue
@@ -32,7 +32,7 @@ def tampilkan_utang():
         hasil = db.tampilkan_utang()
 
         for tbl_utang in hasil:
-            print(f'{tbl_utang['nama_pengutang']} Total Utang: Rp{tbl_utang['total_utang']} [{tbl_utang['status']}] | {tbl_utang['tanggal']}')
+            print(f'{tbl_utang['nama_pengutang']} Total Utang: Rp{tbl_utang['total_utang']:,} [{tbl_utang['status']}] | {tbl_utang['tanggal']}')
         print('\n1. Kembali\n')
         choose = input_integer('Pilihanmu: ')
 
@@ -62,7 +62,7 @@ def kelola_utang():
         pilih = input_integer('\nPilih nomor pengutang (0 untuk kembali): ')
         if pilih == 0:
             main_menu()
-        elif 0 > pilih > len(hasil):
+        elif pilih < 0 or pilih > len(hasil):
             continue
 
         utang_terpilih = hasil[pilih - 1]

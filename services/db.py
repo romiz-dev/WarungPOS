@@ -48,11 +48,18 @@ def tampilkan_semua_barang():
     return hasil
 
 # fungsi update data barang
-def update_data_barang(kode, kolom, nilai_baru):
+def update_data_barang(kode, kolom, value):
+    kolom_valid = ["nama", "harga", "stok"]
+    
+    # 2. Validasi input, jika kolom yang diminta tidak ada di whitelist, batalkan!
+    if kolom not in kolom_valid:
+        raise ValueError(f"Celah Keamanan Terdeteksi: Kolom '{kolom}' tidak valid!")
+    
     db = get_connection()
     cursor = db.cursor()
     query = f"UPDATE tbl_barang SET {kolom} = %s WHERE kode = %s"
-    cursor.execute(query, (nilai_baru, kode))
+    values = (value, kode)
+    cursor.execute(query, values)
     db.commit()
     cursor.close()
     db.close()
